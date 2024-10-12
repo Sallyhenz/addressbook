@@ -31,7 +31,7 @@ pipeline {
                       -Dsonar.projectKey=addressbook-application \
                       -Dsonar.projectName='addressbook-application' \
                       -Dsonar.host.url=http://34.221.148.200:9000 \
-                      -Dsonar.token==${SONAR_TOKEN} \
+                      -Dsonar.token=${SONAR_TOKEN} \
                       -Dsonar.sources=src/main/java/ \
                       -Dsonar.java.binaries=target/classes \
                      """
@@ -73,14 +73,9 @@ pipeline {
          Thanks,
          Team-B
          Dominion System Technologies,
-         +44 7********6'', 
+         +44 7********6''', 
          subject: 'Application was Successfully Deployed!!', to: 'alaneighy88@gmail.com'
       }
     }
   }
 }
-
-
-
-
-
