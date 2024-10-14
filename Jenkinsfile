@@ -67,8 +67,8 @@ pipeline {
 
     stage('7. Email Notification') {
       steps {
-        mail bcc: 'alaneighy88@gmail.com', body: '''Build is Over. Check the application using the URL below:
-         https://abook.dominionsystem.com/addressbook-1.0
+        mail bcc: 'alaneighty88@gmail.com', body: '''Build is Over. Check the application using the URL below:
+         http://addressbook-server-ip-1575406555.us-west-2.elb.amazonaws.com/addressbook-1.0/
          Let me know if the changes look okay.
          Thanks,
          Team-B
