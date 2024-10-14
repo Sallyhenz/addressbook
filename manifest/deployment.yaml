@@ -20,4 +20,3 @@ spec:
         image: public.ecr.aws/n4z7u6y9/addressbook:1.0.0
         ports:
         - containerPort: 8080
-

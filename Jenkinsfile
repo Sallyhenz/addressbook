@@ -12,7 +12,7 @@ pipeline {
     stages {
     stage('1. Git Checkout') {
       steps {
-        git branch: 'release', credentialsId: 'github-credentials', url: 'https://github.com/ayostephen/addressbook.git'
+        git branch: 'release', credentialsId: 'git-credentials', url: 'https://github.com/ayostephen/addressbook.git'
       }
     }
     stage('2. Build with Maven') { 
@@ -28,9 +28,9 @@ pipeline {
               withCredentials([string(credentialsId: 'sonarqube-token', variable: 'SONAR_TOKEN')]) {
                       sh """
                       ${scannerHome}/bin/sonar-scanner  \
-                      -Dsonar.projectKey=addressbook-application \
-                      -Dsonar.projectName='addressbook-application' \
-                      -Dsonar.host.url=http://34.221.148.200:9000 \
+                      -Dsonar.projectKey=teamb-addressbook-application \
+                      -Dsonar.projectName='teamb-addressbook-application' \
+                      -Dsonar.host.url=http://44.243.216.242:9000 \
                       -Dsonar.token=${SONAR_TOKEN} \
                       -Dsonar.sources=src/main/java/ \
                       -Dsonar.java.binaries=target/classes \
@@ -50,9 +50,7 @@ pipeline {
     stage('5. Application Deployment in EKS') {
       steps {
         kubeconfig(caCertificate: '', credentialsId: 'kubeconfig', serverUrl: '') {
-          sh 'kubectl apply -f manifest/deployment.yaml'
-          sh 'kubectl apply -f manifest/service.yaml'
-          sh 'kubectl apply -f manifest/ingress.yaml'
+          sh "kubectl apply -f manifest"
         }
       }
     }
@@ -76,7 +74,7 @@ pipeline {
          Team-B
          Dominion System Technologies,
          +44 7********6''', 
-         subject: 'Application was Successfully Deployed!!', to: 'alaneighy88@gmail.com'
+         subject: 'Application was Successfully Deployed!!', to: 'ricogaba@gmail.com, Sallyhenz@gmail.com, maissegabonais@gmail.com'
       }
     }
   }
