@@ -74,7 +74,7 @@ pipeline {
          Team-B
          Dominion System Technologies,
          +44 7********6''', 
-         subject: 'Application was Successfully Deployed!!', to: 'ricogaba@gmail.com, elizabethoshin@gmail.com, Sallyhenz@gmail.com, maissegabonais@gmail.com'
+         subject: 'Application was Successfully Deployed!!', to: ''
       }
     }
   }
