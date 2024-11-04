@@ -68,7 +68,7 @@ pipeline {
     stage('7. Email Notification') {
       steps {
         mail bcc: 'sallyhenz@gmail.com', body: '''Build is Over. Check the application using the URL below:
-         http://addressbook-server-ip-1575406555.us-west-2.elb.amazonaws.com/addressbook-1.0/
+         http://addressbook-server-ip-722673918.us-west-1.elb.amazonaws.com/addressbook-1.0/
          Let me know if the changes look okay.
          Thanks,
          Team-B
