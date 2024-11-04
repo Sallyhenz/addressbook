@@ -12,7 +12,7 @@ pipeline {
     stages {
     stage('1. Git Checkout') {
       steps {
-        git branch: 'release', credentialsId: 'git-credentials', url: 'https://github.com/Sallyhenz/addressbook.git'
+        git branch: 'release', credentialsId: 'github-credentials', url: 'https://github.com/Sallyhenz/addressbook.git'
       }
     }
     stage('2. Build with Maven') { 
