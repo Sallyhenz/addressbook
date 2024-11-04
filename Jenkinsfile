@@ -12,7 +12,7 @@ pipeline {
     stages {
     stage('1. Git Checkout') {
       steps {
-        git branch: 'release', credentialsId: 'git-credentials', url: 'https://github.com/ayostephen/addressbook.git'
+        git branch: 'release', credentialsId: 'git-credentials', url: 'https://github.com/Sallyhenz/addressbook.git'
       }
     }
     stage('2. Build with Maven') { 
@@ -28,9 +28,9 @@ pipeline {
               withCredentials([string(credentialsId: 'sonarqube-token', variable: 'SONAR_TOKEN')]) {
                       sh """
                       ${scannerHome}/bin/sonar-scanner  \
-                      -Dsonar.projectKey=teamb-addressbook-application \
-                      -Dsonar.projectName='teamb-addressbook-application' \
-                      -Dsonar.host.url=http://44.243.216.242:9000 \
+                      -Dsonar.projectKey=addressbook \
+                      -Dsonar.projectName='addressbook' \
+                      -Dsonar.host.url=http://13.57.32.46:9000 \
                       -Dsonar.token=${SONAR_TOKEN} \
                       -Dsonar.sources=src/main/java/ \
                       -Dsonar.java.binaries=target/classes \
@@ -40,10 +40,10 @@ pipeline {
         }
     stage('4. Docker Image Build') {
       steps {
-        sh "aws ecr-public get-login-password --region us-east-1 | sudo docker login --username AWS --password-stdin public.ecr.aws/n4z7u6y9"
+        sh "aws ecr-public get-login-password --region us-east-1 | sudo docker login --username AWS --password-stdin public.ecr.aws/o0n8n5j9"
         sh "sudo docker build -t addressbook ."
-        sh "sudo docker tag addressbook:latest public.ecr.aws/n4z7u6y9/addressbook:${params.ecr_tag}"
-        sh "sudo docker push public.ecr.aws/n4z7u6y9/addressbook:${params.ecr_tag}"
+        sh "sudo docker tag addressbook:latest public.ecr.aws/o0n8n5j9/addressbook:${params.ecr_tag}"
+        sh "sudo docker push public.ecr.aws/o0n8n5j9/addressbook:${params.ecr_tag}"
       }
     }
 
@@ -67,7 +67,7 @@ pipeline {
 
     stage('7. Email Notification') {
       steps {
-        mail bcc: 'alaneighty88@gmail.com', body: '''Build is Over. Check the application using the URL below:
+        mail bcc: 'sallyhenz@gmail.com', body: '''Build is Over. Check the application using the URL below:
          http://addressbook-server-ip-1575406555.us-west-2.elb.amazonaws.com/addressbook-1.0/
          Let me know if the changes look okay.
          Thanks,
